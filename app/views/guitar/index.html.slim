@@ -1,0 +1,10 @@
+button onclick="start();" Play
+button onclick="stop();" Stop
+div class='grif'
+  div
+    - 13.times do |lad|
+      div class='gstring' = lad
+  - 6.times do |gs|
+    div
+      - 13.times do |lad|
+        div class='gstring' = "#{gstring[gs][lad]}(#{gstring[gs][lad].hz})"
