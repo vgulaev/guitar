@@ -5,9 +5,8 @@ Rails.application.config.assets.version = '1.0'
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
-Rails.application.config.assets.precompile += %w( fist4sec.js )
-Rails.application.config.assets.precompile += %w( graph.js )
-Rails.application.config.assets.precompile += %w( jquery.js )
+Rails.application.config.assets.precompile += %w( fist4sec.js graph.js jquery.js )
+Rails.application.config.assets.precompile += %w( wave_editor.js )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
