@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+    //= javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag 'jquery.js', 'data-turbolinks-track' => true
+    = javascript_include_tag 'fist4sec.js', 'data-turbolinks-track' => true
+    = javascript_include_tag 'graph.js', 'data-turbolinks-track' => true
+body
+  button onclick='MakeGraph();' Press
+  span Hello
+  svg id="graph" version = "1.1" baseProfile="full" xmlns = "http://www.w3.org/2000/svg" xmlns:xlink = "http://www.w3.org/1999/xlink" xmlns:ev = "http://www.w3.org/2001/xml-events" height = "800px"  width = "1900px"

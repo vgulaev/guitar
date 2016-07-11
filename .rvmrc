@@ -1,1 +1,1 @@
-rvm --create use ruby-2.2.3
+rvm --create use ruby-2.3.1

@@ -6,7 +6,7 @@ gainNode = myAudioContext.createGain();
 gainNode.connect( myAudioContext.destination );
 gainNode.gain.value = 1;
 
-s = [{"hz":164.81},{"hz":246.94},{"hz":261.63},{"hz":220.0},{"hz":246.94},{"hz":196.0},{"hz":164.81},{"hz":246.94},{"hz":261.63},{"hz":220.0},{"hz":246.94},{"hz":196.0}];
+var s = [{"hz":164.81},{"hz":246.94},{"hz":261.63},{"hz":220.0},{"hz":246.94},{"hz":196.0},{"hz":164.81},{"hz":246.94},{"hz":261.63},{"hz":220.0},{"hz":246.94},{"hz":196.0}];
 l = s.length - 1;
 function play() {
     i = i + 1;

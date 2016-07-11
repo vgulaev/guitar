@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   resources :symph do
   end
   resources :ex do
+    collection do
+      get  :graph
+      get  :note_e2
+    end
   end
   # Example resource route with options:
   #   resources :products do
