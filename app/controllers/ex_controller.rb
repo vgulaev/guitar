@@ -10,4 +10,8 @@ class ExController < ActionController::Base
   def note_e2
     render('note_e2')
   end
+
+  def note_detector
+    render('note_detector')
+  end
 end

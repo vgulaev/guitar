@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     collection do
       get  :graph
       get  :note_e2
+      get  :note_detector
     end
   end
   # Example resource route with options:
