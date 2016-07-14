@@ -32,6 +32,17 @@ var channels = 2;
 var frameCount = audioCtx.sampleRate * 4;
 var myArrayBuffer = audioCtx.createBuffer(channels, frameCount, audioCtx.sampleRate);
 
+function normalize( ones ) {
+  var maxx = 0;
+  for ( var i in ones ) {
+    if ( Math.abs( ones[ i ] ) > maxx ) { maxx = Math.abs( ones[ i ] ) };
+  };
+  console.log( maxx );
+  for ( var i in ones ) {
+    ones[ i ] = ones[ i ] / maxx;
+  };
+}
+
 button.onclick = function() {
   // Fill the buffer with white noise;
   //just random values between -1.0 and 1.0
@@ -42,8 +53,8 @@ button.onclick = function() {
   maxs = 0;
   var k = -1;
   //57584
-  var start = 58789;
-  var end = 59857;
+  var start = 105457;
+  var end = 106342;
   var d = ( end - start ) * 1;
   for (var i = 0; i < frameCount; i++) {
     /* if ( s[ i ] > 0 && s[ i + 1 ] < 0 ) {
@@ -51,15 +62,16 @@ button.onclick = function() {
       break;
     }; */
     nowBuffering[i] = s[ i % d + start ];
-    hz2 = 249.15;
+    hz2 = 82.41;
     k2 = 2 * Math.PI / ( audioCtx.sampleRate / hz2 );
+    //nowBuffering[i] = Math.sin( i * k2 ) + Math.sin( 2 * k2 * i ) + Math.sin( 3 * k2 * i ) + Math.sin( 4 * k2 * i );
     //nowBuffering[i] = Math.sin( i * k2 );
     // * ( Math.random() / 5 + 1 - 1/5 );
     k = k * -1;
-    //nowBuffering[i] = s[40000 + i];
     }
+    normalize( nowBuffering );
   }
-  console.log( audioCtx.sampleRate / d )
+  //console.log( audioCtx.sampleRate / d )
   // Get an AudioBufferSourceNode.
   // This is the AudioNode to use when we want to play an AudioBuffer
   var source = audioCtx.createBufferSource();

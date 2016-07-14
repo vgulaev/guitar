@@ -14,4 +14,8 @@ class ExController < ActionController::Base
   def note_detector
     render('note_detector')
   end
+
+  def mic
+    render('mic')
+  end
 end

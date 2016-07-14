@@ -15,6 +15,7 @@ function find_first_note() {
 
 function note_print() {
   var ffn = find_first_note();
+  
   console.log( ffn );
   $( '#output' ).html( 'Hello!!!' );
 }

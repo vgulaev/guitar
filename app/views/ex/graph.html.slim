@@ -10,7 +10,12 @@ html
 body
   button onclick='MakeGraph();' Press
   button onclick='play();' Play
-  span Hello
+  button onclick='add_1000();' Add 1000
+  br
+  input type="radio" id="mouse_mode_move" name="mouse_mode" value="move" onclick='setMouseMode(this);'
+  label move
+  input type="radio" id="mouse_mode_select" name="mouse_mode" value="select" onclick='setMouseMode(this);'
+  label select
   div
     input id='scale_x' type="range" min="0.25" max="3" step="0.05" value="1"
   svg id="graph" version = "1.1" baseProfile="full" xmlns = "http://www.w3.org/2000/svg" xmlns:xlink = "http://www.w3.org/1999/xlink" xmlns:ev = "http://www.w3.org/2001/xml-events" height = "800px"  width = "1500px"
