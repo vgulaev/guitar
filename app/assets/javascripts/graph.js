@@ -10,8 +10,28 @@ function Graph( svg, starty ) {
   //can be: select, move
   this.mouse_mode = 'select';
   this.drow_axis( starty );
-  this.svg[ 0 ].addEventListener('mousedown', this.onMouseDown.bind( this ), false);
+  this.drow_canvas_size();
+  this.onWindowResize();
+  // Events
+  this.svg[ 0 ].addEventListener( 'mousedown', this.onMouseDown.bind( this ), false );
+  window.addEventListener( 'resize', this.onWindowResize.bind( this ) );
   //document.getElementById( svg[ 0 ].id ).addEventListener( 'mousedown', this.mousedown, true );
+};
+
+Graph.prototype.onWindowResize = function( e ) {
+  this.svg.width( window.innerWidth - 30 );
+  this.width = this.svg.width();
+  this.drow_canvas_size();
+  this.drow_axis();
+  //console.log( 'onWindowResize ' + window.innerWidth );
+};
+
+Graph.prototype.drow_canvas_size = function() {
+  var label = recreate( 'text', 'size_label' );
+  label.setAttribute( 'color', 'black' );
+  label.setAttribute( 'y', '20' );
+  label.innerHTML = this.svg.width() + ' x ' + this.svg.height();
+  this.svg.append( label );
 };
 
 Graph.prototype.action_move = function( e ) {
@@ -45,7 +65,6 @@ Graph.prototype.round_selection = function( rect ) {
     }
     newx -= 1;
   };
-  console.log( 'round_selection' );
 };
 
 function recreate( svg_type, svg_id ) {
@@ -87,7 +106,7 @@ Graph.prototype.action_select = function( e ) {
       rect_label.setAttribute( 'x', rect.x.baseVal.value );
       rect_label.setAttribute( 'y', e.data.self.origin.y - 20 );
       var delta = e.data.self.selected[ 'e' ] - e.data.self.selected[ 's' ];
-      rect_label.innerHTML = Math.round( delta / e.data.self.sampleRate * 1000 ) / 1000 + ' s';
+      rect_label.innerHTML = Math.round( delta / e.data.self.sampleRate * 1000 ) / 1000 + ' s ' + Math.round( e.data.self.sampleRate / delta * 100 ) / 100 + ' hz';
   } );
 };
 
@@ -110,12 +129,12 @@ Graph.prototype.onMouseDown = function( e ) {
 };
 
 Graph.prototype.drow_axis = function ( starty ) {
-  var axisx = document.createElementNS( "http://www.w3.org/2000/svg", "line" );
+  var axisx = recreate( 'line', 'axis_x' );
   axisx.setAttribute( 'x1', 0 );
-  axisx.setAttribute( 'y1', starty );
+  axisx.setAttribute( 'y1', this.origin.y );
   axisx.setAttribute( 'x2', this.width );
-  axisx.setAttribute( 'y2', starty );
-  axisx.setAttribute( 'stroke', "red" ); 
+  axisx.setAttribute( 'y2', this.origin.y );
+  axisx.setAttribute( 'stroke', 'red' ); 
   axisx.setAttribute( 'stroke-width', 1 );  
   this.svg.append( axisx );
 };
@@ -145,7 +164,7 @@ Graph.prototype.drow = function ( id, xargs, things ) {
     console.log( this.offset_x );
     for ( var i = start_i; i < finish_i ; i ++ ) {
       if ( ( i < 0 ) || ( i >= x.length ) ) { continue };
-      points.push( [ x[ i ] - this.offset_x, Math.round( y[ i ] * this.scale.y ) + this.origin.y ].join( ',' ) )
+      points.push( [ ( x[ i ] - this.offset_x ) * this.scale.x, Math.round( y[ i ] * this.scale.y ) + this.origin.y ].join( ',' ) )
     };
 
     g.id = e;

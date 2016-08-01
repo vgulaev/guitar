@@ -9,7 +9,8 @@ function add_1000() {
 function MakeGraph() {
   g = new Graph( $("#graph"), 400 );
   g.mouse_mode = 'select';
-  g.scale.y = 900;
+  g.scale.y = 700;
+  g.scale.x = 1;
   g.offset_x = 0;
   g.offset_x = 58789;
   g.offset_x = 105457;
@@ -51,4 +52,5 @@ function play() {
 function setMouseMode( element ) {
   g.mouse_mode = element.value;
 } 
+
 $( function () { MakeGraph(); } );
